@@ -3,17 +3,21 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
-banner = '''
-.________         ___ .______  ._____  .________._______ .______  .______  
-|    ___/.___    |   |:      \ :_ ___\ |    ___/:_.  ___\:      \ :      \ 
-|___    \:   | /\|   ||   .   ||   |___|___    \|  : |/\ |   .   ||       |
-|       /|   |/  :   ||   :   ||   /  ||       /|    /  \|   :   ||   |   |
-|__:___/ |   /       ||___|   ||. __  ||__:___/ |. _____/|___|   ||___|   |
-   :     |______/|___|    |___| :/ |. |   :      :/          |___|    |___|
-                 :              :   :/           :                         
-                 :                  :                                      
-'''
-
+def show_banner():
+    banner = f"""
+ {BOLD_BLUE} ███▄    █  ▄▄▄    ██▒   █▓ ███▄    █ {NC}
+ {BOLD_BLUE} ██ ▀█   █ ▒████▄ ▓██░   █▒ ██ ▀█   █ {NC}
+ {BOLD_BLUE}▓██  ▀█ ██▒▒██  ▀█▄▓██  █▒░▓██  ▀█ ██▒{NC}
+ {BOLD_BLUE}▓██▒  ▐▌██▒░██▄▄▄▄██▒██ █░░▓██▒  ▐▌██▒{NC}
+ {BOLD_BLUE}▒██░   ▓██░ ▓█   ▓██▒▒▀█░  ▒██░   ▓██░{NC}
+ {BOLD_BLUE}░ ▒░   ▒ ▒  ▒▒   ▓▒█░░ ▐░  ░ ▒░   ▒ ▒ {NC}
+ {BOLD_BLUE}░ ░░   ░ ▒░  ▒   ▒▒ ░░ ░░  ░ ░░   ░ ▒░{NC}
+ {BOLD_BLUE}   ░   ░ ░   ░   ▒     ░░     ░   ░ ░ {NC}
+ {BOLD_BLUE}         ░       ░  ░   ░           ░ {NC}
+ {BOLD_BLUE}                       ░               {NC}
+    """
+    print(banner)
+   
 api_paths = [
     '/swagger-ui.html', '/swagger-ui/', '/swagger-ui/index.html', '/api-docs',
     '/v2/api-docs', '/v3/api-docs', '/swagger.json', '/openapi.json',
@@ -73,7 +77,7 @@ def scan_apis(urls, threads, output_file):
     print(f'Scanning completed in {elapsed_time:.2f} seconds.')
 
 def main():
-    print(banner)
+    # print(banner)
     
     parser = argparse.ArgumentParser(description='SwagScaner: Scan for API links (including Swagger and OpenAPI) from a list of URLs.')
     parser.add_argument('-u', '--urls', required=True, help='Input file containing URLs')
